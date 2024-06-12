@@ -7,7 +7,16 @@
 
 :root{
     height: 100%;
+    --main-text-accent:rebeccapurple;
+    --h1-boder: 5px solid rgba(190,130,190);
+    --h1-bg:rgba(150,40,150,0.7);
+    --terminal: rgb(20,20,20,0.7);
+    --terminal-border: 1px solid grey;
+    --danger:red;
+    --cursor-flicker: flick 0.7s infinite;
 }
+
+
 
 @font-face {
     font-family: 'Quicksand Book';
@@ -44,8 +53,8 @@ aside{
     width: 100%;
 }
 
-.navbar > button{
-    padding: 10px 5px;
+.command{
+    padding:5px;
     border: none;
     background-color: transparent;
     text-transform: lowercase;
@@ -60,24 +69,23 @@ aside{
     width: 100%;
 }
 
-.navbar > button::before{
+.command::before{
     content: "_";
+    color: var(--main-text-accent);
 }
 
-
-
-.navbar > button:hover{
-    border: 1px solid grey;
+.command:hover{
+    border: var(--terminal-border)
 }
 
-.navbar > button:hover::before{
-    content: "site: $cd ./";
-    color: rebeccapurple;
+.command:hover::before{
+    content: "site: $ cd ./";
+    color: var(--main-text-accent);
 }
 
-.navbar > button:hover::after{
+.command:hover::after{
     content: "|";
-    animation: flick 0.7s infinite; ;
+    animation: var(--cursor-flicker) ;
 }
 
 .navbar > button:not(:first-child){
@@ -89,7 +97,7 @@ aside{
         display: block;
     }
     height:auto;
-    background-color: rgb(20,20,20);
+    background-color: var(--terminal);
 }
 
 #content{
@@ -110,10 +118,10 @@ h1{
     text-transform: lowercase;
     font-weight: bold;
     padding: 10px;
-    border:5px solid rgba(190,130,190);
+    border: var(--h1-boder);
     width: 100%;
     margin-bottom: 15px;
-    background-color: rgba(150,40,150,0.7);
+    background-color: var(--h1-bg);
     cursor: pointer;
 }
 
@@ -123,56 +131,34 @@ h1::before{
 
 h1::after{
     content: "|";
-    animation: flick 0.7s infinite;
+    animation: var(--cursor-flicker);
 }
 
 ul{
     text-align: center;
-    padding: 5px;
+    padding: 6px;
     transition: 0.2s;
 }
 
 ul:hover{
-    border: 1px solid grey;
+    border:var(--terminal-border);
     border-radius: 5px;
-    background-color: rgb(20,20,20,0.7);
+    background-color: var(--terminal);
 }
 
-
 li{
-    list-style-position: inside;
+    list-style:none;
     cursor: pointer;
     font-size: 1.2rem;
     padding: 3px;
     transition: 0.2s;
 }
 
-li:hover{
-    border: 1px solid grey;
-   /* text-align: start;*/
-       padding: 2px;
-}
-
-li::marker{
-    content: '_';
-    color: rebeccapurple;
-    list-style-position: inside;
-}
-
-li:hover::marker{
-    content: "$cd  ./";
-}
-
-li:hover::after{
-    content: "|";
-     animation: flick 0.7s infinite; ;
-}
-
 li:hover:last-of-type{
-    color: red;
+    color: var(--danger);
 }
 
-li:hover:last-of-type::marker{
+li:hover:last-of-type::before{
     content: "$" ;
 }
 
@@ -308,13 +294,6 @@ section >div >div:nth-child(2n-1){
         background-color: rgb(20,20,20);
     }
 
-    li{
-        list-style-position: inside;
-        cursor: pointer;
-        font-size: 1.2rem;
-        padding: 3px;
-        transition: 0.2s;
-    }
 
     li:hover{
         border: 1px solid grey;
