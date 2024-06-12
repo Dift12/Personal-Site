@@ -5,52 +5,175 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+:root{
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'Quicksand Book';
+    src: url('../fonts/QuicksandBook-Regular.woff2') format('woff2'),
+        url('../fonts/QuicksandBook-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 body{
+    height: 100%;
     display: flex;
-    background-color: black; /*DELETE*/
+    flex-direction: column;
+    background-color: rgb(10,10,15); /*DELETE*/
+}
+
+aside{
+    height: 100vh;
 }
 
 .navbar{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    transform: rotate(-90deg);
-    transform-origin: top left;
     position: fixed;
-    bottom: 0;
-    border: 1px solid white;
-    border-top: none;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     transition: 0.2s;
-    padding: 0px 15px 0px 15px;
-    overflow: hidden;
-}
-
-.navbar:hover{
-    padding-left: 25px;
+    padding: 5px 15px;
+    gap: 15px;
+    width: 100%;
 }
 
 .navbar > button{
-    padding: 15px 5px;
+    padding: 10px 5px;
     border: none;
     background-color: transparent;
-    text-transform: uppercase;
+    text-transform: lowercase;
     cursor: pointer;
     color: white;
     transition: 0.2s;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: bold;
+    font-family: 'Quicksand Book' ;
+    width: 100%;
+    text-align: start;
+    width: 100%;
 }
 
+.navbar > button::before{
+    content: "_";
+}
+
+
+
 .navbar > button:hover{
-   /* transform: rotate(10deg);*/
-    transform-origin: bottom left;
-    letter-spacing: 0px;
-    border-left: 1px solid white ;
-    background-color: brown;
+    border: 1px solid grey;
+}
+
+.navbar > button:hover::before{
+    content: "site: $cd ./";
+    color: rebeccapurple;
+}
+
+.navbar > button:hover::after{
+    content: "|";
+    animation: flick 0.7s infinite; ;
+}
+
+.navbar > button:not(:first-child){
+    display: none;
+}
+
+.navbar:hover{
+    button{
+        display: block;
+    }
+    height:auto;
+    background-color: rgb(20,20,20);
 }
 
 #content{
     flex-grow: 1;
+}
+
+#content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    transform: skewX(-10deg);
+    font-size: clamp(2.2rem, 10vmin, 5rem);
+    font-family: Arial;
+    color: white;
+    text-transform: lowercase;
+    font-weight: bold;
+    padding: 10px;
+    border:5px solid rgba(190,130,190);
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: rgba(150,40,150,0.7);
+    cursor: pointer;
+}
+
+h1::before{
+    content: "$";
+}
+
+h1::after{
+    content: "|";
+    animation: flick 0.7s infinite;
+}
+
+ul{
+    text-align: center;
+    padding: 5px;
+    transition: 0.2s;
+}
+
+ul:hover{
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: rgb(20,20,20,0.7);
+}
+
+
+li{
+    list-style-position: inside;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 3px;
+    transition: 0.2s;
+}
+
+li:hover{
+    border: 1px solid grey;
+   /* text-align: start;*/
+       padding: 2px;
+}
+
+li::marker{
+    content: '_';
+    color: rebeccapurple;
+    list-style-position: inside;
+}
+
+li:hover::marker{
+    content: "$cd  ./";
+}
+
+li:hover::after{
+    content: "|";
+     animation: flick 0.7s infinite; ;
+}
+
+li:hover:last-of-type{
+    color: red;
+}
+
+li:hover:last-of-type::marker{
+    content: "$" ;
 }
 
 .blob-filter{
@@ -70,28 +193,28 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    fill: black;
+    fill: rgb(10,10,10);
     width: 50vmax;
     z-index: -1;
     animation: move 40s ease-in-out infinite;
     transform-origin: 50% 50%;
-    filter: drop-shadow(0px 0px 50px red);
+    filter: drop-shadow(0px 0px 50px rebeccapurple);
   }
 
   .blob svg{
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
 
   .blob-2 {
     position: absolute;
     top: 0;
     left: 0;
-    fill: black;
+    fill: rgb(10,10,10);
     width: 10vmax;
     z-index: -1;
     animation:  move 60s ease-in-out infinite ;
     transform-origin: 50% 50%;
-    filter: drop-shadow(0px 0px 40px red);
+    filter: drop-shadow(0px 0px 40px rebeccapurple);
   }
 
 @keyframes move {
@@ -102,3 +225,148 @@ body{
     80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
     100% { transform: scale(1)   translate(10px, -30px); }
   }
+
+  @keyframes flick{
+    0%{opacity: 0;}
+    25%{opacity: 0;}
+    50%{opacity: 0;}
+    75%{opacity: 1;}
+    100%{opacity: 1;}
+  }
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+section{
+    color: white;
+    max-width: 85ch;
+}
+
+section p{
+    font-family: monospace;
+    font-size: 1.3rem;
+}
+
+section >div{
+    padding:30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+section>  div> div{
+    height: 250px;
+    width: 8%;
+    border: 1px solid white;
+    transition: 0.2s;
+    cursor: pointer;
+    flex-shrink: 1;
+    text-align: center;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+section>  div> div:hover{
+    border: none;
+    background-color: wheat;
+    filter: drop-shadow(0px 0px 30px white);
+    transform: scale(1.1);
+    color: black;
+    width: 100%;
+}
+
+section>  div> div:active{
+    border:none;
+    background-color: lightcoral;
+    filter: drop-shadow(0px 0px 30px red);
+    transform: scale(1.1);
+}
+
+
+section >div >div:nth-child(2n){
+    margin-top: 10px;
+    
+}
+
+section >div >div:nth-child(2n-1){
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:900px){
+   
+    ul{
+        text-align: start;
+        padding: 5px;
+        transition: 0.2s;
+        border: 1px solid grey;
+        border-radius: 5px;
+        background-color: rgb(20,20,20);
+    }
+
+    li{
+        list-style-position: inside;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 3px;
+        transition: 0.2s;
+    }
+
+    li:hover{
+        border: 1px solid grey;
+        text-align: start;
+        padding: 2px;
+    }
+
+    li:active{
+        border: 1px solid grey;
+        text-align: start;
+        padding: 2px;
+        background-color: rgba(30,30,30);
+    }
+
+    li::marker{
+        content: '_';
+        color: rebeccapurple;
+        list-style-position: inside;
+    }
+
+    li:hover::marker{
+        content: "$cd  ./";
+    }
+
+    li:active::marker{
+        content: "$cd  ./";
+    }
+
+    li:hover::after{
+        content: "|";
+        animation: flick 0.7s infinite; ;
+    }
+
+    li:active::after{
+        content: "|";
+        animation: flick 0.7s infinite; ;
+    }
+
+    li:hover:last-of-type{
+        color: red;
+    }
+
+    li:active:last-of-type{
+        color: red;
+    }
+
+    li:hover:last-of-type::marker{
+        content: "$" ;
+    }
+
+    li:active:last-of-type::marker{
+        content: "$" ;
+    }
+
+}
