@@ -1,0 +1,33 @@
+#content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul{
+    text-align: center;
+    padding: 6px;
+    transition: 0.2s;
+}
+
+ul:hover{
+    border:var(--terminal-border);
+    border-radius: 5px;
+    background-color: var(--terminal);
+}
+
+li.command{
+    list-style:none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 3px;
+    transition: 0.2s;
+}
+
+li:hover:last-of-type{
+    color: var(--danger);
+}
+
+li:hover:last-of-type::before{
+    content: "$" ;
+}
