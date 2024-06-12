@@ -107,6 +107,7 @@ aside{
 
 #content{
     flex-grow: 1;
+    padding: 35px;
 }
 
 section{
@@ -199,11 +200,4 @@ main{
     display: flex;
     align-items: flex-start;
     justify-content: center;
-}
-
-
-
-.display{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
 }
